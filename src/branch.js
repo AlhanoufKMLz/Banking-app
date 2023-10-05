@@ -20,7 +20,7 @@ export class Branch{
     }
     addCustomerTransaction(customerId, amount){
         const foundCustomer = this.customers.find((cust)=> cust.getId() === customerId);
-        if(!foundCustomer){
+        if(foundCustomer){
             foundCustomer.addTransaction(amount);
             return true;
         } else return false;
