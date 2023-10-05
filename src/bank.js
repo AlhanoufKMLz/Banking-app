@@ -7,57 +7,49 @@ export class Bank{
     }
 
     addBranch(branch){
-        const foundBranch = this.branches.find((bran)=> bran.getName() === branch.getName());
+        const foundBranch = this.branches.find((item)=> item.getName() === branch.getName());
         if(!foundBranch){
             this.branches.push(branch);
             return true;
         }
         else return false;
     }
-
     addCustomer(branch, customer){
-        const foundBranch = this.branches.find((bran)=> bran.getName() === branch.getName());
+        const foundBranch = this.branches.find((item)=> item.getName() === branch.getName());
         if(foundBranch){
             foundBranch.addCustomer(customer);
             return true;
         }
         else return false;
     }
-
     addCustomerTransaction(branch, customerId, amount){
-        const foundBranch = this.branches.find((bran)=> bran.getName() === branch.getName());
+        const foundBranch = this.branches.find((item)=> item.getName() === branch.getName());
         if(foundBranch){
             foundBranch.addCustomerTransaction(customerId, amount);
             return true;
         }
         else return false;
     }
-
     findBranchByName(branchName){
-        return this.branches.find((bran)=> bran.getName() === branchName) || null;
+        return this.branches.find((item)=> item.getName() === branchName) || null;
     }
-
     checkBranch(branch){
-        return this.branches.some(bran => bran.getName() === branch.getName());
-           
+        return this.branches.some(item => item.getName() === branch.getName());  
     }
-
     listCustomers(branch, includeTransactions){
-        if(includeTransactions){
-            if(this.checkBranch(branch)){
-                const branchCustomers = branch.getCustomers();
-                branchCustomers.forEach(customer => {
-                    console.log('Name:',customer.getName(),'ID:',customer.getId());
+        if(this.checkBranch(branch)){
+            const branchCustomers = branch.getCustomers();
+            branchCustomers.forEach(customer => {
+                console.log('Name:',customer.getName(),'ID:',customer.getId());
+                if(includeTransactions){
                     const customerTransaction = customer.getTransactions()
                     customerTransaction.forEach((transaction) =>{
                         console.log('Amount:', transaction.amount, ' ,Date:', transaction.date);
                     });
-                    console.log('----------');
-                });
-            }
+                }
+            });
         }
     }
-
 }
 
 
@@ -85,7 +77,7 @@ arizonaBank.addCustomerTransaction(westBranch, customer1.getId(), 2000)
 arizonaBank.addCustomerTransaction(westBranch, customer2.getId(), 3000)
 
 customer1.addTransaction(-1000)
-console.log(customer1.getBalance(),'Balance')
+console.log(customer1.getBalance())
 arizonaBank.listCustomers(westBranch, true)
 arizonaBank.listCustomers(sunBranch,true)
 

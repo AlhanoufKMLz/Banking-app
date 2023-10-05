@@ -11,7 +11,7 @@ export class Branch{
         return(this.customers);
     }
     addCustomer(customer){
-        const foundCustomer = this.customers.find((cust)=> cust.getId() === customer.getId());
+        const foundCustomer = this.customers.find((item)=> item.getId() === customer.getId());
         if(!foundCustomer){
             this.customers.push(customer);
             return true;
@@ -19,7 +19,7 @@ export class Branch{
         else return false;
     }
     addCustomerTransaction(customerId, amount){
-        const foundCustomer = this.customers.find((cust)=> cust.getId() === customerId);
+        const foundCustomer = this.customers.find((item)=> item.getId() === customerId);
         if(foundCustomer){
             foundCustomer.addTransaction(amount);
             return true;
