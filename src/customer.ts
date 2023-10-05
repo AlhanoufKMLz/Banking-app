@@ -1,18 +1,22 @@
-import { Transaction } from "./transaction.js";
+import { Transaction } from "./transaction";
 export class Customer{
-    constructor(name, id){
+    name: string;
+    id: number;
+    transactions: Transaction[];
+    
+    constructor(name: string, id:number){
         this.name = name;
         this.id = id;
         this.transactions = [];
     }
 
-    getName(){
+    getName():string{
         return this.name;
     }
-    getId(){
+    getId():number{
         return this.id;
     }
-    getTransactions(){
+    getTransactions():Transaction[]{
         return this.transactions;
     }
     getBalance(){
@@ -20,9 +24,9 @@ export class Customer{
         if(balance < 0 ){
             return 'the balance is negative';
         }
-        else return balance;
+        return balance;
     }
-    addTransaction(amount){
+    addTransaction(amount:number):boolean{
         this.transactions.push(new Transaction(amount, new Date()));
         return true;
     }

@@ -1,28 +1,33 @@
+import { Customer } from "./customer";
 export class Branch{
-    constructor(name){
+    name: string;
+    customers: Customer[];
+
+    constructor(name: string){
         this.name = name;
         this.customers = [];
     }
 
-    getName(){
-        return(this.name);
+    getName():string{
+        return this.name;
     }
-    getCustomers(){
-        return(this.customers);
+    getCustomers():Customer[]{
+        return this.customers;
     }
-    addCustomer(customer){
+    addCustomer(customer: Customer):boolean{
         const foundCustomer = this.customers.find((item)=> item.getId() === customer.getId());
         if(!foundCustomer){
             this.customers.push(customer);
             return true;
         }
-        else return false;
+        return false;
     }
-    addCustomerTransaction(customerId, amount){
+    addCustomerTransaction(customerId: number, amount: number):boolean{
         const foundCustomer = this.customers.find((item)=> item.getId() === customerId);
         if(foundCustomer){
             foundCustomer.addTransaction(amount);
             return true;
-        } else return false;
+        } 
+        return false;
     }
 }
