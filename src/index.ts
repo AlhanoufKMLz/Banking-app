@@ -25,8 +25,14 @@ arizonaBank.addCustomerTransaction(westBranch, customer1.getId(), 3000)
 arizonaBank.addCustomerTransaction(westBranch, customer1.getId(), 2000)
 arizonaBank.addCustomerTransaction(westBranch, customer2.getId(), 3000)
 
-customer1.addTransaction(-1000)
+customer1.addTransaction(-10000)
 console.log(customer1.getBalance())
 arizonaBank.listCustomers(westBranch, true)
 arizonaBank.listCustomers(sunBranch,true)
+
+console.log(arizonaBank.findCustomerById(1))
+console.log(arizonaBank.findCustomerById(4))
+console.log(arizonaBank.findCustomerByName('Anna'))
+console.log(arizonaBank.findCustomerByName('Alhanouf'))
+
 

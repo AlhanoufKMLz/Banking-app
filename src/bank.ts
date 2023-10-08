@@ -20,29 +20,26 @@ export class Bank{
     addCustomer(branch: Branch, customer: Customer):boolean{
         const foundBranch = this.branches.find((item)=> item.getName() === branch.getName());
         if(foundBranch){
-            foundBranch.addCustomer(customer);
-            return true;
+            return foundBranch.addCustomer(customer);
         }
         return false;
     }
     addCustomerTransaction(branch: Branch, customerId: number, amount: number):boolean{
         const foundBranch = this.branches.find((item)=> item.getName() === branch.getName());
         if(foundBranch){
-            foundBranch.addCustomerTransaction(customerId, amount);
-            return true;
+            return foundBranch.addCustomerTransaction(customerId, amount);
         }
         return false;
     }
-    findBranchByName(branchName: string){
-        return this.branches.find((item)=> item.getName() === branchName) || null;
+    findBranchByName(branchName: string):Branch[] | null{
+        return this.branches.filter((item)=> item.getName() === branchName) || null;
     }
     checkBranch(branch: Branch){
         return this.branches.some(item => item.getName() === branch.getName());  
     }
     listCustomers(branch: Branch, includeTransactions: boolean){
         if(this.checkBranch(branch)){
-            const branchCustomers = branch.getCustomers();
-            branchCustomers.forEach(customer => {
+            branch.getCustomers().forEach(customer => {
                 console.log('Name:',customer.getName(),'ID:',customer.getId());
                 if(includeTransactions){
                     const customerTransaction = customer.getTransactions()
@@ -52,6 +49,24 @@ export class Bank{
                 }
             });
         }
+    }
+    findCustomerById(cutomerId: number): Customer|string {
+        let customerFound;
+        this.branches.forEach(branch => {
+            customerFound = branch.getCustomers().find((customer) => customer.getId() === cutomerId)   
+        });
+        if (customerFound)
+            return customerFound;
+        return `there is no user with the ID ${cutomerId}`
+    }
+    findCustomerByName(cutomerName: string): Customer|string {
+        let customerFound;
+        this.branches.forEach(branch => {
+            customerFound = branch.getCustomers().find((customer) => customer.getName() === cutomerName)   
+        });
+        if (customerFound)
+            return customerFound;
+        return `there is no user with the name ${cutomerName}`
     }
 }
 
