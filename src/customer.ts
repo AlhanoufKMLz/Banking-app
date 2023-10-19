@@ -23,11 +23,6 @@ export class Customer{
     }
     getBalance(): number{
         return this.balance;
-        // const balance = this.transactions.reduce((total, transaction) => total + transaction.amount, 0);
-        // if(balance < 0){
-        //     return 'the balance is negative';
-        // }
-        // return balance;
     }
     addTransaction(amount:number):boolean{
         if(amount + this.balance > 0){

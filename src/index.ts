@@ -34,5 +34,3 @@ console.log(arizonaBank.findCustomerById(1))
 console.log(arizonaBank.findCustomerById(4))
 console.log(arizonaBank.findCustomerByName('Anna'))
 console.log(arizonaBank.findCustomerByName('Alhanouf'))
-
-
