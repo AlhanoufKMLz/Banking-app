@@ -159,3 +159,14 @@ To complete this assignment, follow the guidelines below:
 
 Happy coding!
 
+### How to run
+```
+npm run watch
+```
+```
+npm run build
+```
+```
+npm run start
+```
+
